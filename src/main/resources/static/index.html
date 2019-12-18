@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>os info monitor</title>
+</head>
+<script type="text/javascript" src="./3th/jquery-3.4.1.min.js"></script>
+<body>
+
+	<script type="text/javascript">
+		$(function(){
+       
+
+      function renderAll(data) {
+        console.log(data);
+      }
+
+      function refreshAll(){
+        $.get("./monitor/getComputerInfo",renderAll);
+      }
+
+      setInterval(refreshAll,5000);      
+		});
+	</script>
+</body>
+</html>

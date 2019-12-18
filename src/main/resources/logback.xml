@@ -1,0 +1,36 @@
+<configuration>
+	<appender name="stdout"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<Target>System.out</Target>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %5p %c{1}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="log"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		
+		<File>logs/project.log</File>
+		
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>logs/project.log.%d{yyyy-MM-dd}-%i</fileNamePattern>
+			<!-- 单个文件 20MB, 保留60天历史但是最大不超过200MB(200MB时请配置201M) -->
+			<maxFileSize>20MB</maxFileSize>
+			<maxHistory>60</maxHistory>
+			<totalSizeCap>201MB</totalSizeCap>
+		</rollingPolicy>
+		
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [ %t:%r ]  [ %p ] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.springframework" level="ERROR" />
+	<logger name="com.example.demo.cos" level="DEBUG" />
+	
+	<root level="INFO">
+		<appender-ref ref="stdout" />
+		<appender-ref ref="log" />
+	</root>
+</configuration>
